@@ -1,0 +1,27 @@
+{
+  "$comment": "Lock file for vendored skills. Each entry is copied byte-for-byte from `repo`/`path` at `rev` (plus the upstream license). tools/vendor.py keeps it honest; the weekly upstream-sync workflow proposes new revs as reviewable pull requests.",
+  "skills": [
+    {
+      "name": "design-taste-frontend",
+      "repo": "Leonxlnx/taste-skill",
+      "path": "skills/taste-skill",
+      "ref": "HEAD",
+      "rev": "ce26fc25c0e5e8cab638f883de62d9a86ee5e45b",
+      "license": "MIT",
+      "license_file": "LICENSE",
+      "category": "frontend",
+      "why": "The repository's default skill: design direction and a pre-flight checklist that keep generated landing pages and portfolios from looking templated. Its twelve sibling skills overlap in trigger words, so only this one is vendored."
+    },
+    {
+      "name": "playwright-cli",
+      "repo": "microsoft/playwright-cli",
+      "path": "skills/playwright-cli",
+      "ref": "HEAD",
+      "rev": "74354ecc7a43da16d91a9bc54fa8db8283a3fcf5",
+      "license": "Apache-2.0",
+      "license_file": "LICENSE",
+      "category": "testing",
+      "why": "Token-efficient browser automation and Playwright test work through the playwright-cli tool (install it with npm i -g @playwright/cli)."
+    }
+  ]
+}

@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>agent-skills · Egoushka</title>
+<meta name="description" content="Curated, pinned agent skills for Claude Code, OpenCode, Codex and other agents, with their context cost in plain numbers.">
+<style>
+:root {
+  --bg: #fbfbfa; --surface: #ffffff; --ink: #1b1c1e; --muted: #5f6368; --line: #e6e4df;
+  --accent: #3b5bdb; --accent-soft: #e8ecfd; --warn: #b54708; --warn-soft: #fef0e2;
+  --ok: #1a7f37; --ok-soft: #e6f4ea; --bar: #c5cff8; --bar-strong: #3b5bdb;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1012; --surface: #17181b; --ink: #ececed; --muted: #9a9ca3; --line: #2a2c31;
+    --accent: #8da2fb; --accent-soft: #1d2340; --warn: #f5a524; --warn-soft: #33240e;
+    --ok: #3fb950; --ok-soft: #12291a; --bar: #2e3a6e; --bar-strong: #8da2fb;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.55 var(--sans); }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+code, .mono { font-family: var(--mono); font-size: 0.92em; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+header.top { border-bottom: 1px solid var(--line); }
+header.top .wrap { display: flex; justify-content: space-between; align-items: center; height: 56px; }
+.crumb { font-family: var(--mono); font-size: 14px; color: var(--muted); }
+.crumb b { color: var(--ink); font-weight: 600; }
+.hero { padding: 48px 0 28px; }
+.hero h1 { font-size: clamp(28px, 4vw, 38px); line-height: 1.15; margin: 0 0 12px; letter-spacing: -0.02em; }
+.hero p { margin: 0 0 22px; color: var(--muted); max-width: 680px; font-size: 16px; }
+.cmd { display: flex; align-items: center; gap: 10px; max-width: 560px; background: var(--surface); border: 1px solid var(--line);
+  border-radius: 10px; padding: 10px 10px 10px 14px; font-family: var(--mono); font-size: 14px; }
+.cmd span { flex: 1; overflow-wrap: anywhere; }
+.cmd span::before { content: "$ "; color: var(--muted); }
+button.copy { border: 1px solid var(--line); background: var(--bg); color: var(--ink); border-radius: 7px; padding: 5px 10px;
+  font: 12px var(--sans); cursor: pointer; flex: none; }
+button.copy:hover { border-color: var(--accent); color: var(--accent); }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 8px 0 40px; }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+.stat .v { font-size: 24px; font-weight: 650; letter-spacing: -0.01em; }
+.stat .l { color: var(--muted); font-size: 13px; }
+h2 { font-size: 20px; margin: 0 0 6px; letter-spacing: -0.01em; }
+.sub { color: var(--muted); margin: 0 0 18px; max-width: 760px; }
+section { margin: 0 0 48px; }
+.tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 18px; }
+.tier { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; background: var(--surface); }
+.tier .n { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.tier .t { font-weight: 600; margin: 2px 0 4px; }
+.tier .d { color: var(--muted); font-size: 13.5px; }
+.budget { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+.brow { display: grid; grid-template-columns: 200px 1fr 90px; gap: 12px; align-items: center; padding: 6px 0; }
+.brow .nm { font-family: var(--mono); font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.track { position: relative; height: 12px; background: var(--bg); border-radius: 6px; }
+.fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 6px; background: var(--bar-strong); min-width: 3px; }
+.fill.over { background: var(--warn); }
+.guide { position: absolute; top: -4px; bottom: -4px; width: 0; border-left: 2px dashed var(--muted); opacity: 0.7; }
+.brow .num { text-align: right; font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.legend { display: flex; gap: 18px; flex-wrap: wrap; color: var(--muted); font-size: 12.5px; margin-top: 10px; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+.toolbar { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
+.chip { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 5px 12px;
+  font: 13px var(--sans); cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+.search { margin-left: auto; border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 8px;
+  padding: 6px 10px; font: 14px var(--sans); min-width: 220px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 14px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+.card h3 { margin: 0; font: 600 15px var(--mono); }
+.row { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.badge { font-size: 11.5px; border-radius: 6px; padding: 2px 7px; border: 1px solid var(--line); color: var(--muted); }
+.badge.own { background: var(--ok-soft); color: var(--ok); border-color: transparent; }
+.badge.vendored { background: var(--accent-soft); color: var(--accent); border-color: transparent; }
+.badge.update { background: var(--warn-soft); color: var(--warn); border-color: transparent; }
+.desc { color: var(--ink); font-size: 14px; margin: 0; }
+.why { color: var(--muted); font-size: 13px; margin: 0; }
+.facts { display: flex; gap: 14px; flex-wrap: wrap; color: var(--muted); font-size: 12.5px; font-family: var(--mono); }
+.flags { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; }
+.flags li { font-size: 12.5px; color: var(--warn); }
+.flags li::before { content: "▲ "; font-size: 10px; }
+.card .cmd { max-width: none; padding: 7px 8px 7px 10px; font-size: 12px; margin-top: auto; }
+details.more { font-size: 12.5px; color: var(--muted); }
+details.more summary { cursor: pointer; }
+details.more ul { margin: 6px 0 0; padding-left: 18px; }
+.prov { font-size: 12.5px; color: var(--muted); }
+table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 14px; }
+th { font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); font-weight: 600; }
+tr:last-child td { border-bottom: 0; }
+td.m { font-family: var(--mono); font-size: 13px; white-space: nowrap; }
+.feed { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--line); }
+.feed li { position: relative; padding: 0 0 14px 18px; }
+.feed li::before { content: ""; position: absolute; left: -6px; top: 7px; width: 10px; height: 10px; border-radius: 50%; background: var(--surface); border: 2px solid var(--accent); }
+.feed .d { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; padding: 22px 0 40px; }
+footer .wrap { display: flex; gap: 18px; flex-wrap: wrap; justify-content: space-between; }
+.empty { color: var(--muted); font-size: 14px; }
+@media (max-width: 760px) {
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .tiers { grid-template-columns: 1fr; }
+  .brow { grid-template-columns: 110px 1fr 70px; }
+  .search { margin-left: 0; width: 100%; }
+  .corpora td:nth-child(3), .corpora th:nth-child(3) { display: none; }
+}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="crumb"><span id="owner"></span> / <b>agent-skills</b></div>
+  <a id="repo-link" href="#">GitHub →</a>
+</div></header>
+
+<main class="wrap">
+  <div class="hero">
+    <h1>Agent skills, curated and pinned</h1>
+    <p>Skills for Claude Code, OpenCode, Codex and the other agents that read <code>SKILL.md</code>. Own skills and reviewed upstream ones, each pinned to a commit, with its context cost in plain numbers.</p>
+    <div class="cmd"><span id="install-all"></span><button class="copy" data-copy-from="install-all">Copy</button></div>
+  </div>
+
+  <div class="stats" id="stats"></div>
+
+  <section>
+    <h2>How a skill spends context</h2>
+    <p class="sub">Agents load skills in three steps. Only the first costs something in every session, which is why descriptions stay short and bodies stay lean.</p>
+    <div class="tiers" id="tiers"></div>
+    <div class="budget">
+      <div id="budget"></div>
+      <div class="legend">
+        <span><i style="background:var(--bar-strong)"></i>SKILL.md body, loaded when the skill fires</span>
+        <span><i style="background:var(--warn)"></i>over the 5,000-token guideline</span>
+        <span><i style="border:2px dashed var(--muted);width:0;height:10px;border-radius:0"></i>guideline</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <p class="sub">Own skills are written here. Vendored skills are byte-for-byte copies of upstream at a pinned commit; a weekly job proposes updates as pull requests with a review report.</p>
+    <div class="toolbar">
+      <button class="chip" data-filter="all" aria-pressed="true">All</button>
+      <button class="chip" data-filter="own" aria-pressed="false">Own</button>
+      <button class="chip" data-filter="vendored" aria-pressed="false">Vendored</button>
+      <input class="search" id="q" type="search" placeholder="Filter by name or text" aria-label="Filter skills">
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section>
+    <h2>Reference corpora</h2>
+    <p class="sub"><code>dev-references</code> searches these repositories through a self-hosted index. Only this list is published; the content is cloned onto the machine that builds the index.</p>
+    <table class="corpora"><thead><tr><th>Corpus</th><th>Use it for</th><th>License</th></tr></thead><tbody id="corpora"></tbody></table>
+  </section>
+
+  <section>
+    <h2>Activity</h2>
+    <p class="sub">Recent commits: new skills, reviewed upstream bumps, catalog changes.</p>
+    <ul class="feed" id="feed"></ul>
+  </section>
+</main>
+
+<footer><div class="wrap">
+  <span id="generated"></span>
+  <span><a id="adr-link" href="#">Decisions</a> · <a id="authoring-link" href="#">Authoring rules</a> · <a id="license-link" href="#">MIT</a></span>
+</div></footer>
+
+<script id="catalog" type="application/json">__CATALOG_JSON__</script>
+<script>
+(() => {
+  const data = JSON.parse(document.getElementById("catalog").textContent);
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const k = (n) => n >= 1000 ? (n / 1000).toFixed(n >= 10000 ? 0 : 1) + "k" : String(n);
+  const repoUrl = `https://github.com/${data.repo}`;
+  const GUIDE = 5000;
+
+  $("owner").textContent = data.repo.split("/")[0];
+  $("repo-link").href = repoUrl;
+  $("install-all").textContent = data.install;
+  $("adr-link").href = `${repoUrl}/tree/main/docs/adr`;
+  $("authoring-link").href = `${repoUrl}/blob/main/docs/authoring.md`;
+  $("license-link").href = `${repoUrl}/blob/main/LICENSE`;
+  $("generated").textContent = `Generated ${data.generated_at} from ${data.repo}@${data.commit || "local"}`;
+
+  const t = data.totals;
+  const biggest = [...data.skills].sort((a, b) => b.body_tokens - a.body_tokens)[0];
+  const pending = t.updates_pending;
+  $("stats").innerHTML = [
+    [t.skills, `skills · ${t.own} own, ${t.vendored} vendored`],
+    [`≈${k(t.metadata_tokens)}`, "tokens always loaded (all descriptions)"],
+    [`≈${k(biggest ? biggest.body_tokens : 0)}`, `largest activation · ${biggest ? biggest.name : "–"}`],
+    [pending === null ? "–" : pending, pending === null ? "upstream check skipped" : "upstream updates awaiting review"],
+  ].map(([v, l]) => `<div class="stat"><div class="v">${esc(v)}</div><div class="l">${esc(l)}</div></div>`).join("");
+
+  const files = data.skills.reduce((n, s) => n + s.references + s.scripts, 0);
+  $("tiers").innerHTML = [
+    ["1 · always", "Name and description", `≈${k(t.metadata_tokens)} tokens for all ${t.skills} skills, in every session. This is the router: the agent picks a skill by reading it.`],
+    ["2 · on match", "SKILL.md body", `≈${k(t.median_body_tokens)} tokens for the median skill, loaded only when its description matches the task.`],
+    ["3 · on demand", "references/ and scripts/", `${files} files, read or executed only when the body points at them. Scripts run without entering context.`],
+  ].map(([n, h, d]) => `<div class="tier"><div class="n">${n}</div><div class="t">${h}</div><div class="d">${d}</div></div>`).join("");
+
+  const max = Math.max(GUIDE * 1.2, ...data.skills.map((s) => s.body_tokens));
+  $("budget").innerHTML = [...data.skills].sort((a, b) => b.body_tokens - a.body_tokens).map((s) => `
+    <div class="brow" title="${esc(s.name)}: ≈${s.body_tokens} tokens, ${s.body_lines} lines">
+      <div class="nm">${esc(s.name)}</div>
+      <div class="track"><div class="fill ${s.body_tokens > GUIDE ? "over" : ""}" style="width:${(s.body_tokens / max * 100).toFixed(2)}%"></div>
+        <div class="guide" style="left:${(GUIDE / max * 100).toFixed(2)}%"></div></div>
+      <div class="num">≈${k(s.body_tokens)}</div>
+    </div>`).join("");
+
+  let filter = "all";
+  const render = () => {
+    const q = $("q").value.trim().toLowerCase();
+    const shown = data.skills.filter((s) => (filter === "all" || s.origin === filter) &&
+      (!q || (s.name + " " + s.description + " " + (s.category || "")).toLowerCase().includes(q)));
+    $("grid").innerHTML = shown.length ? shown.map(card).join("") : `<p class="empty">No skill matches.</p>`;
+  };
+  const card = (s) => {
+    // Permissions, context cost and trigger overlap matter to whoever installs the skill;
+    // the remaining authoring notes are for maintainers, so they fold away.
+    const PROMINENT = ["W110", "W102", "W112"];
+    const notes = s.findings.filter((f) => f.level !== "error");
+    const hasTokens = notes.some((f) => f.code === "W102");
+    const top = notes.filter((f) => PROMINENT.includes(f.code) || (f.code === "W101" && !hasTokens));
+    const rest = notes.filter((f) => !top.includes(f));
+    const flags = top.map((f) => `<li>${esc(f.message)}</li>`).join("");
+    const more = rest.length ? `<details class="more"><summary>${rest.length} authoring note${rest.length > 1 ? "s" : ""}</summary>
+      <ul>${rest.map((f) => `<li>${esc(f.message)}</li>`).join("")}</ul></details>` : "";
+    const prov = s.origin === "vendored"
+      ? `Pinned <a href="https://github.com/${esc(s.repo)}/tree/${esc(s.rev)}/${esc(s.path)}">${esc(s.repo)}@${esc(s.rev.slice(0, 7))}</a> · ${esc(s.license)}`
+      : `Written here · <a href="${repoUrl}/tree/main/skills/${esc(s.name)}">source</a>${s.updated ? " · updated " + esc(s.updated) : ""}`;
+    return `<article class="card">
+      <div class="row"><h3>${esc(s.name)}</h3>
+        <span class="badge ${s.origin}">${s.origin}</span>
+        ${s.category ? `<span class="badge">${esc(s.category)}</span>` : ""}
+        ${s.upstream && s.upstream.behind ? `<span class="badge update">update ${esc(s.upstream.head.slice(0, 7))}</span>` : ""}</div>
+      <p class="desc">${esc(s.description)}</p>
+      ${s.why ? `<p class="why">${esc(s.why)}</p>` : ""}
+      <div class="facts"><span>≈${k(s.metadata_tokens)} always</span><span>≈${k(s.body_tokens)} on activation</span><span>${s.body_lines} lines</span><span>${s.files} files</span></div>
+      ${flags ? `<ul class="flags">${flags}</ul>` : ""}
+      ${more}
+      <div class="prov">${prov}</div>
+      <div class="cmd"><span id="cmd-${esc(s.name)}">${esc(s.install)}</span><button class="copy" data-copy-from="cmd-${esc(s.name)}">Copy</button></div>
+    </article>`;
+  };
+  document.querySelectorAll(".chip").forEach((chip) => chip.addEventListener("click", () => {
+    filter = chip.dataset.filter;
+    document.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", String(c === chip)));
+    render();
+  }));
+  $("q").addEventListener("input", render);
+  render();
+
+  $("corpora").innerHTML = data.corpora.map((c) => `<tr>
+    <td class="m"><a href="https://github.com/${esc(c.repo)}">${esc(c.name)}</a></td>
+    <td>${esc(c.use_for)}</td><td>${esc(c.license)}</td></tr>`).join("");
+
+  $("feed").innerHTML = data.activity.length ? data.activity.map((a) => `<li>
+    <div class="d">${esc(a.date)} · <a href="${repoUrl}/commit/${esc(a.sha)}">${esc(a.sha.slice(0, 7))}</a></div>
+    <div>${esc(a.subject)}</div></li>`).join("") : `<li class="empty">No history yet.</li>`;
+
+  document.addEventListener("click", async (event) => {
+    const button = event.target.closest("button.copy");
+    if (!button) return;
+    const text = document.getElementById(button.dataset.copyFrom).textContent;
+    try { await navigator.clipboard.writeText(text); button.textContent = "Copied"; }
+    catch { button.textContent = "Select & copy"; }
+    setTimeout(() => (button.textContent = "Copy"), 1500);
+  });
+})();
+</script>
+</body>
+</html>

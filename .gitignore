@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.venv/
+_site/
+upstream-report.md
+*.db
+*.db.tmp
+.DS_Store

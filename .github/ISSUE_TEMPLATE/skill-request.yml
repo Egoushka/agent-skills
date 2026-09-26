@@ -1,0 +1,27 @@
+name: Skill or corpus request
+description: Suggest a skill to write or vendor, or a reference repository to index
+labels: [request]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind
+      options: [New skill, Vendor an existing skill, New reference corpus]
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Upstream repository (if any)
+      placeholder: owner/repo or URL
+  - type: textarea
+    id: when
+    attributes:
+      label: When should an agent use it?
+      description: Two or three real prompts that should trigger it, and one that should not.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why is it worth the context?

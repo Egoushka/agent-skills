@@ -1,0 +1,36 @@
+{
+  "skill": "dev-references",
+  "$comment": "Trigger and behaviour cases. Run on demand (they call a model): see docs/authoring.md#6-evals-before-prose.",
+  "should_trigger": [
+    {
+      "query": "I need a free API for currency exchange rates for a demo app. What are my options?",
+      "expected_behavior": ["Searches public-apis with kind=link", "Lists at most 5 APIs with auth/HTTPS notes and URLs", "Suggests verifying the API is still live"]
+    },
+    {
+      "query": "Explain consistent hashing and give me a source I can cite.",
+      "expected_behavior": ["Searches system-design-primer or coding-interview-university", "Reads one section before answering", "Cites the section URL"]
+    },
+    {
+      "query": "What should I learn next about background jobs in ASP.NET Core?",
+      "expected_behavior": ["Searches developer-roadmap with source filter", "Summarizes rather than pastes roadmap text", "Links the resources listed for the topic"]
+    },
+    {
+      "query": "Is there a tutorial for building my own Redis from scratch?",
+      "expected_behavior": ["Searches build-your-own-x and project-based-learning", "Returns tutorials with their languages"]
+    },
+    {
+      "query": "Style this landing page like Linear. Grab a DESIGN.md for it.",
+      "expected_behavior": ["Searches awesome-design-md", "Reads the whole document with a large max_chars or raw_url", "Writes DESIGN.md to the project root"]
+    },
+    {
+      "query": "Free books on compilers, ideally in Ukrainian",
+      "expected_behavior": ["Searches free-programming-books", "Prefers files with the -uk suffix, says so when none match"]
+    }
+  ],
+  "should_not_trigger": [
+    "Fix this EF Core migration error: The entity type requires a primary key.",
+    "What changed in the latest .NET release?",
+    "Write a LinkedIn post about my homelab.",
+    "Review this pull request for N+1 queries."
+  ]
+}

@@ -1,0 +1,27 @@
+# Example stack for the VPS. Copy into your GitOps repo and adapt the network,
+# reverse-proxy labels and secret handling to the conventions there.
+#
+# The corpus includes developer-roadmap, whose license allows personal use only:
+# keep this endpoint private (tailnet, or behind the proxy with REFS_TOKEN).
+services:
+  refs:
+    image: ghcr.io/egoushka/agent-skills-refs:latest
+    container_name: refs
+    restart: unless-stopped
+    environment:
+      REFS_TOKEN: ${REFS_TOKEN:?set REFS_TOKEN}          # clients send "Authorization: Bearer <token>"
+      REFS_ALLOWED_HOSTS: "refs.example.ts.net,refs:8765" # Host values your clients use
+      REFS_REFRESH_HOURS: "24"                             # re-sync corpora and rebuild daily
+    volumes:
+      - refs-data:/data                                    # ~90 MB of clones + ~55 MB index
+    ports:
+      - "127.0.0.1:8765:8765"                              # publish through the proxy/tailnet, not 0.0.0.0
+    mem_limit: 256m                                        # measured: ~70 MB serving, +30 MB during a rebuild
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+
+volumes:
+  refs-data:

@@ -1,0 +1,63 @@
+name: upstream-sync
+
+# Weekly: move every vendored skill to its upstream HEAD and open one pull request
+# with a review report (changed files, token deltas, allowed-tools and script changes,
+# new URLs). Nothing reaches main without a human merging it.
+
+on:
+  schedule:
+    - cron: "23 5 * * 1" # Mondays 05:23 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.13"
+
+      - run: pip install -r requirements-dev.txt
+
+      - name: Move pins to upstream HEAD
+        id: sync
+        run: python tools/vendor.py sync --update --report "$RUNNER_TEMP/report.md"
+
+      # Pull requests opened with GITHUB_TOKEN do not trigger other workflows, so the
+      # checks CI would run are appended to the report instead.
+      - name: Validate and refresh the catalog
+        if: steps.sync.outputs.changed == 'true'
+        run: |
+          python tools/catalog.py
+          {
+            echo
+            echo "### Validation"
+            echo
+            echo '```'
+            python tools/validate.py || true
+            echo '```'
+          } >> "$RUNNER_TEMP/report.md"
+
+      - name: Open or update the pull request
+        if: steps.sync.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
+        with:
+          token: ${{ secrets.SYNC_TOKEN || github.token }} # a PAT here makes CI run on the PR too
+          branch: bot/upstream-sync
+          delete-branch: true
+          commit-message: "chore(vendor): bump upstream skills"
+          title: "chore(vendor): upstream skill updates"
+          body-path: ${{ runner.temp }}/report.md
+          labels: upstream
+          add-paths: |
+            skills/**
+            vendor.json
+            README.md

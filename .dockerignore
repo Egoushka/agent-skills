@@ -1,0 +1,5 @@
+*
+!refs/requirements.txt
+!refs/server.py
+!skills/dev-references/scripts/refs.py
+!skills/dev-references/assets/sources.json

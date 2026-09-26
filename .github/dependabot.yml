@@ -1,0 +1,25 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      actions:
+        patterns: ["*"]
+    commit-message:
+      prefix: chore(ci)
+
+  - package-ecosystem: pip
+    directories: ["/", "/refs"]
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore(deps)
+
+  - package-ecosystem: docker
+    directory: /refs
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore(refs)

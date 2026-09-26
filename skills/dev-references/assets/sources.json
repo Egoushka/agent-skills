@@ -1,0 +1,107 @@
+{
+  "$comment": "Corpora indexed by scripts/refs.py. Only this configuration is published; the content is cloned onto the machine that builds the index and never redistributed. Fields: repo (GitHub owner/name), sparse (checkout only these top-level paths), include/exclude (globs relative to the repo root), sections (index prose chunks, not only links), whole_doc (one record per file), context (regex whose ctx group labels records by path), parser (markdown | fcc-blocks), enabled.",
+  "version": 1,
+  "sources": [
+    {
+      "name": "public-apis",
+      "repo": "public-apis/public-apis",
+      "include": ["README.md"],
+      "license": "MIT",
+      "about": "Free and public HTTP APIs by category, with auth, HTTPS and CORS flags.",
+      "use_for": "Finding an external API for a feature, demo or integration test."
+    },
+    {
+      "name": "system-design-primer",
+      "repo": "donnemartin/system-design-primer",
+      "sparse": ["solutions"],
+      "include": ["README.md", "solutions/system_design/*/README.md"],
+      "sections": true,
+      "context": "solutions/system_design/(?P<ctx>[^/]+)/",
+      "license": "CC BY 4.0",
+      "about": "System design concepts (caching, sharding, consistency, load balancing) and worked interview designs.",
+      "use_for": "Explaining a scalability concept or trade-off with a citable source; design-interview practice."
+    },
+    {
+      "name": "developer-roadmap",
+      "repo": "kamranahmedse/developer-roadmap",
+      "sparse": ["roadmaps"],
+      "include": ["roadmaps/*/content/*.md"],
+      "sections": true,
+      "context": "roadmaps/(?P<ctx>[^/]+)/",
+      "license": "Personal use only; do not redistribute content",
+      "about": "roadmap.sh topic notes with curated resources for about 90 roadmaps (ASP.NET Core, backend, system design, PostgreSQL, Redis, Angular, DevOps, AI engineer...).",
+      "use_for": "Short topic explainers, what to learn next, and vetted articles or videos per topic."
+    },
+    {
+      "name": "build-your-own-x",
+      "repo": "codecrafters-io/build-your-own-x",
+      "include": ["README.md"],
+      "license": "CC0 1.0",
+      "about": "Tutorials for re-implementing technologies from scratch (database, Docker, Git, Redis, web server...).",
+      "use_for": "Learning how something works by building a small version of it."
+    },
+    {
+      "name": "project-based-learning",
+      "repo": "practical-tutorials/project-based-learning",
+      "include": ["README.md"],
+      "license": "MIT",
+      "about": "Project tutorials grouped by programming language.",
+      "use_for": "Hands-on projects in a given language, including C#."
+    },
+    {
+      "name": "free-programming-books",
+      "repo": "EbookFoundation/free-programming-books",
+      "sparse": ["books", "courses", "casts", "more"],
+      "include": ["books/*.md", "courses/*.md", "casts/*.md", "more/*.md"],
+      "context": "(?P<ctx>(books|courses|casts|more)/[^/]+)\\.md$",
+      "license": "CC BY 4.0",
+      "about": "Free books, courses, screencasts and interactive tutorials in many human languages (file suffix = language, e.g. -uk, -ru, -langs).",
+      "use_for": "A free book or course on a language or subject, optionally in Ukrainian."
+    },
+    {
+      "name": "coding-interview-university",
+      "repo": "jwasham/coding-interview-university",
+      "include": ["README.md"],
+      "sections": true,
+      "license": "CC BY-SA 4.0",
+      "about": "A multi-month computer-science study plan with links for every topic.",
+      "use_for": "Interview preparation and CS fundamentals (data structures, algorithms, complexity)."
+    },
+    {
+      "name": "awesome",
+      "repo": "sindresorhus/awesome",
+      "include": ["readme.md"],
+      "license": "CC0 1.0",
+      "about": "The index of awesome lists, one per technology or topic.",
+      "use_for": "Finding the curated list for a technology before searching the web."
+    },
+    {
+      "name": "awesome-python",
+      "repo": "vinta/awesome-python",
+      "include": ["README.md"],
+      "license": "CC BY 4.0",
+      "about": "Python frameworks, libraries and tools by category.",
+      "use_for": "Picking a Python library for a task."
+    },
+    {
+      "name": "awesome-design-md",
+      "repo": "VoltAgent/awesome-design-md",
+      "include": ["design-md/*/DESIGN.md"],
+      "whole_doc": true,
+      "context": "design-md/(?P<ctx>[^/]+)/",
+      "license": "MIT",
+      "about": "DESIGN.md files (colors, typography, spacing, components) inspired by well-known product sites.",
+      "use_for": "Giving a UI task a concrete visual system; copy the chosen file to the project root as DESIGN.md."
+    },
+    {
+      "name": "freecodecamp",
+      "repo": "freeCodeCamp/freeCodeCamp",
+      "sparse": ["curriculum/structure/blocks"],
+      "include": ["curriculum/structure/blocks/*.json"],
+      "parser": "fcc-blocks",
+      "license": "BSD-3-Clause (code), curriculum per repository terms",
+      "about": "freeCodeCamp curriculum outline: every block with its lessons, labs and exams (outline only, not lesson text).",
+      "use_for": "Beginner-to-intermediate curricula and exercise ideas (web, Python, C#, algorithms)."
+    }
+  ]
+}
