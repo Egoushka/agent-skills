@@ -20,6 +20,8 @@ npx skills update                                           # pull what changed 
 
 [`skills`](https://github.com/vercel-labs/skills) keeps one copy per machine and symlinks it into each agent's folder, so updating it once updates every agent.
 
+To stay current automatically, install the daily job with `./tools/sync/install-macos.sh`. It runs `npx skills update` and stages changed skills for Claude Desktop, which only accepts manual uploads. See [docs/sync.md](docs/sync.md).
+
 ## Catalog
 
 <!-- catalog:start -->
