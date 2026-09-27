@@ -22,6 +22,28 @@
       "license_file": "LICENSE",
       "category": "testing",
       "why": "Token-efficient browser automation and Playwright test work through the playwright-cli tool (install it with npm i -g @playwright/cli)."
+    },
+    {
+      "name": "grilling",
+      "path": "skills/productivity/grilling",
+      "repo": "mattpocock/skills",
+      "ref": "HEAD",
+      "rev": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7",
+      "license": "MIT",
+      "license_file": "LICENSE",
+      "category": "planning",
+      "why": "Interviews you about a plan as a design tree, one round of frontier questions at a time, each with a recommended answer; looks up facts itself and leaves decisions to you. The engine behind grill-me."
+    },
+    {
+      "name": "grill-me",
+      "path": "skills/productivity/grill-me",
+      "repo": "mattpocock/skills",
+      "ref": "HEAD",
+      "rev": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7",
+      "license": "MIT",
+      "license_file": "LICENSE",
+      "category": "planning",
+      "why": "Manual entry point (/grill-me) for grilling; disable-model-invocation keeps it out of automatic routing."
     }
   ]
 }

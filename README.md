@@ -30,9 +30,11 @@ To stay current automatically, install the daily job with `./tools/sync/install-
 |---|---|---|--:|--:|
 | [`design-taste-frontend`](skills/design-taste-frontend) | [Leonxlnx/taste-skill@ce26fc2](https://github.com/Leonxlnx/taste-skill/tree/ce26fc25c0e5e8cab638f883de62d9a86ee5e45b/skills/taste-skill) · MIT | Anti-slop frontend skill for landing pages, portfolios, and redesigns. | ≈73 | ≈21.7k ⚠ |
 | [`dev-references`](skills/dev-references) | own | Searches curated developer reference corpora and answers with cited links or sections. | ≈146 | ≈740 |
+| [`grill-me`](skills/grill-me) | [mattpocock/skills@c55ee46](https://github.com/mattpocock/skills/tree/c55ee46073ed923f86ce59a5eb3b6d895095d1b7/skills/productivity/grill-me) · MIT | A relentless interview to sharpen a plan or design. | ≈16 | ≈10 |
+| [`grilling`](skills/grilling) | [mattpocock/skills@c55ee46](https://github.com/mattpocock/skills/tree/c55ee46073ed923f86ce59a5eb3b6d895095d1b7/skills/productivity/grilling) · MIT | Grill the user relentlessly about a plan, decision, or idea. | ≈41 | ≈447 |
 | [`playwright-cli`](skills/playwright-cli) | [microsoft/playwright-cli@74354ec](https://github.com/microsoft/playwright-cli/tree/74354ecc7a43da16d91a9bc54fa8db8283a3fcf5/skills/playwright-cli) · Apache-2.0 | Automate browser interactions, test web pages and work with Playwright tests. | ≈24 | ≈3.7k |
 
-All 3 skills together cost ≈243 tokens in every session (names and descriptions); a body loads only when its skill fires. ⚠ marks a body over the 5,000-token guideline. Token counts are estimates (characters ÷ 4).
+All 5 skills together cost ≈300 tokens in every session (names and descriptions); a body loads only when its skill fires. ⚠ marks a body over the 5,000-token guideline. Token counts are estimates (characters ÷ 4).
 <!-- catalog:end -->
 
 ## How it fits together
