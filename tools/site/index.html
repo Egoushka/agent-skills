@@ -151,6 +151,12 @@ footer .wrap { display: flex; gap: 18px; flex-wrap: wrap; justify-content: space
   </section>
 
   <section>
+    <h2>From publishers</h2>
+    <p class="sub">These carry more than skills (hooks, a language server, sub-agents, commands), so they install as plugins straight from their publishers. Their pure skills are vendored above.</p>
+    <table class="corpora"><thead><tr><th>Plugin</th><th>What it is for</th><th>Why a plugin</th></tr></thead><tbody id="publishers"></tbody></table>
+  </section>
+
+  <section>
     <h2>Reference corpora</h2>
     <p class="sub"><code>dev-references</code> searches these repositories through a self-hosted index. Only this list is published; the content is cloned onto the machine that builds the index.</p>
     <table class="corpora"><thead><tr><th>Corpus</th><th>Use it for</th><th>License</th></tr></thead><tbody id="corpora"></tbody></table>
@@ -254,6 +260,10 @@ footer .wrap { display: flex; gap: 18px; flex-wrap: wrap; justify-content: space
   }));
   $("q").addEventListener("input", render);
   render();
+
+  $("publishers").innerHTML = (data.publishers || []).map((p) => `<tr>
+    <td class="m"><a href="https://github.com/${esc(p.repo)}">${esc(p.name)}</a></td>
+    <td>${esc(p.why)}<div class="facts" style="margin-top:4px">${esc(p.install)}</div></td><td>${esc(p.why_plugin)}</td></tr>`).join("");
 
   $("corpora").innerHTML = data.corpora.map((c) => `<tr>
     <td class="m"><a href="https://github.com/${esc(c.repo)}">${esc(c.name)}</a></td>

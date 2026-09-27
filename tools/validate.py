@@ -105,7 +105,8 @@ def check_body(skill: Skill) -> list[dict]:
     if re.search(r"\b[\w.-]+\\[\w.-]+\.(md|py|sh|json)\b", prose(skill.body)):
         out.append(finding("warning", "W108", "use forward slashes in file paths"))
     for target in LOCAL_LINK.findall(prose(skill.body)):
-        clean = target.split("#")[0]
+        # {baseDir} is a client placeholder for the skill's own folder (Claude Code).
+        clean = target.split("#")[0].replace("{baseDir}/", "")
         if clean and not (skill.path / clean).exists():
             out.append(finding("error", "E008", f"link to missing file: {target}"))
     for ref in sorted(skill.path.rglob("*.md")):
@@ -162,8 +163,14 @@ def run() -> dict[str, dict]:
     for skill in skills:
         items = check_frontmatter(skill) + check_body(skill) + check_secrets(skill) + overlap.get(skill.name, [])
         is_vendored = skill.name in vendor
-        if is_vendored:  # upstream owns these practices; keep them visible, never failing
-            items = [dict(f, level="note") if f["level"] == "warning" else f for f in items]
+        if is_vendored:
+            # Upstream owns its practices and its own links: keep both visible, never failing.
+            # Spec violations and secrets still fail, because they break or endanger the install.
+            items = [
+                dict(f, level="note", message=f["message"] + " (upstream)") if f["code"] == "E008"
+                else dict(f, level="note") if f["level"] == "warning" else f
+                for f in items
+            ]
         results[skill.name] = {"vendored": is_vendored, "findings": items}
     for name in sorted(set(vendor) - {s.name for s in skills}):
         results[name] = {"vendored": True, "findings": [finding("error", "E011", "listed in vendor.json but missing; run tools/vendor.py sync")]}

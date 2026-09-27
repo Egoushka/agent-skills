@@ -44,6 +44,236 @@
       "license_file": "LICENSE",
       "category": "planning",
       "why": "Manual entry point (/grill-me) for grilling; disable-model-invocation keeps it out of automatic routing."
+    },
+    {
+      "name": "angular-developer",
+      "repo": "angular/skills",
+      "path": "angular-developer",
+      "ref": "HEAD",
+      "rev": "bb6fb990438bb28840ed0cd8f0f08e51c295f1ce",
+      "license": "MIT (declared in SKILL.md; repository has no license file)",
+      "category": "frontend",
+      "why": "Angular team's guidance for components, signals, forms, routing and testing on current Angular."
+    },
+    {
+      "name": "cloudflare-one",
+      "repo": "cloudflare/skills",
+      "path": "skills/cloudflare-one",
+      "ref": "HEAD",
+      "rev": "626547c06881a20b3322bdc2ed6e6451b33a4fb6",
+      "license": "Apache-2.0",
+      "category": "infra",
+      "license_file": "LICENSE",
+      "why": "Cloudflare One (Tunnel, WARP, Access, Gateway): where the homelab's tunnel and WARP/CGNAT issues live."
+    },
+    {
+      "name": "promql",
+      "repo": "grafana/skills",
+      "path": "skills/grafana-core/promql",
+      "ref": "HEAD",
+      "rev": "1ccacf29049fde66637fe01ab93a83a772da323b",
+      "license": "Apache-2.0",
+      "category": "observability",
+      "license_file": "LICENSE",
+      "why": "Grafana Labs' query and dashboard skills for a self-hosted Prometheus/Loki/Grafana stack; Cloud-only skills left out."
+    },
+    {
+      "name": "dashboarding",
+      "repo": "grafana/skills",
+      "path": "skills/grafana-core/dashboarding",
+      "ref": "HEAD",
+      "rev": "1ccacf29049fde66637fe01ab93a83a772da323b",
+      "license": "Apache-2.0",
+      "category": "observability",
+      "license_file": "LICENSE",
+      "why": "Grafana Labs' query and dashboard skills for a self-hosted Prometheus/Loki/Grafana stack; Cloud-only skills left out."
+    },
+    {
+      "name": "alerting-irm",
+      "repo": "grafana/skills",
+      "path": "skills/grafana-core/alerting-irm",
+      "ref": "HEAD",
+      "rev": "1ccacf29049fde66637fe01ab93a83a772da323b",
+      "license": "Apache-2.0",
+      "category": "observability",
+      "license_file": "LICENSE",
+      "why": "Grafana Labs' query and dashboard skills for a self-hosted Prometheus/Loki/Grafana stack; Cloud-only skills left out."
+    },
+    {
+      "name": "loki",
+      "repo": "grafana/skills",
+      "path": "skills/grafana-lgtm/loki",
+      "ref": "HEAD",
+      "rev": "1ccacf29049fde66637fe01ab93a83a772da323b",
+      "license": "Apache-2.0",
+      "category": "observability",
+      "license_file": "LICENSE",
+      "why": "Grafana Labs' query and dashboard skills for a self-hosted Prometheus/Loki/Grafana stack; Cloud-only skills left out."
+    },
+    {
+      "name": "prometheus",
+      "repo": "grafana/skills",
+      "path": "skills/grafana-lgtm/prometheus",
+      "ref": "HEAD",
+      "rev": "1ccacf29049fde66637fe01ab93a83a772da323b",
+      "license": "Apache-2.0",
+      "category": "observability",
+      "license_file": "LICENSE",
+      "why": "Grafana Labs' query and dashboard skills for a self-hosted Prometheus/Loki/Grafana stack; Cloud-only skills left out."
+    },
+    {
+      "name": "optimizing-ef-core-queries",
+      "repo": "dotnet/skills",
+      "path": "plugins/dotnet-data/skills/optimizing-ef-core-queries",
+      "ref": "HEAD",
+      "rev": "a55fbf42c36a37b94ec07291bd79cb6b6bf3a04d",
+      "license": "MIT",
+      "category": "dotnet",
+      "license_file": "LICENSE",
+      "why": "Microsoft's .NET skills, curated to EF Core, Web API, OpenTelemetry, diagnostics, CPM and upgrades; mobile crash tools, Blazor and the heavy test/MSBuild sets left out."
+    },
+    {
+      "name": "create-datadriven-aspnetcore",
+      "repo": "dotnet/skills",
+      "path": "plugins/dotnet-data/skills/create-datadriven-aspnetcore",
+      "ref": "HEAD",
+      "rev": "a55fbf42c36a37b94ec07291bd79cb6b6bf3a04d",
+      "license": "MIT",
+      "category": "dotnet",
+      "license_file": "LICENSE",
+      "why": "Microsoft's .NET skills, curated to EF Core, Web API, OpenTelemetry, diagnostics, CPM and upgrades; mobile crash tools, Blazor and the heavy test/MSBuild sets left out."
+    },
+    {
+      "name": "dotnet-webapi",
+      "repo": "dotnet/skills",
+      "path": "plugins/dotnet-aspnetcore/skills/dotnet-webapi",
+      "ref": "HEAD",
+      "rev": "a55fbf42c36a37b94ec07291bd79cb6b6bf3a04d",
+      "license": "MIT",
+      "category": "dotnet",
+      "license_file": "LICENSE",
+      "why": "Microsoft's .NET skills, curated to EF Core, Web API, OpenTelemetry, diagnostics, CPM and upgrades; mobile crash tools, Blazor and the heavy test/MSBuild sets left out."
+    },
+    {
+      "name": "configuring-opentelemetry-dotnet",
+      "repo": "dotnet/skills",
+      "path": "plugins/dotnet-aspnetcore/skills/configuring-opentelemetry-dotnet",
+      "ref": "HEAD",
+      "rev": "a55fbf42c36a37b94ec07291bd79cb6b6bf3a04d",
+      "license": "MIT",
+      "category": "dotnet",
+      "license_file": "LICENSE",
+      "why": "Microsoft's .NET skills, curated to EF Core, Web API, OpenTelemetry, diagnostics, CPM and upgrades; mobile crash tools, Blazor and the heavy test/MSBuild sets left out."
+    },
+    {
+      "name": "analyzing-dotnet-performance",
+      "repo": "dotnet/skills",
+      "path": "plugins/dotnet-diag/skills/analyzing-dotnet-performance",
+      "ref": "HEAD",
+      "rev": "a55fbf42c36a37b94ec07291bd79cb6b6bf3a04d",
+      "license": "MIT",
+      "category": "dotnet",
+      "license_file": "LICENSE",
+      "why": "Microsoft's .NET skills, curated to EF Core, Web API, OpenTelemetry, diagnostics, CPM and upgrades; mobile crash tools, Blazor and the heavy test/MSBuild sets left out."
+    },
+    {
+      "name": "dotnet-trace-collect",
+      "repo": "dotnet/skills",
+      "path": "plugins/dotnet-diag/skills/dotnet-trace-collect",
+      "ref": "HEAD",
+      "rev": "a55fbf42c36a37b94ec07291bd79cb6b6bf3a04d",
+      "license": "MIT",
+      "category": "dotnet",
+      "license_file": "LICENSE",
+      "why": "Microsoft's .NET skills, curated to EF Core, Web API, OpenTelemetry, diagnostics, CPM and upgrades; mobile crash tools, Blazor and the heavy test/MSBuild sets left out."
+    },
+    {
+      "name": "dump-collect",
+      "repo": "dotnet/skills",
+      "path": "plugins/dotnet-diag/skills/dump-collect",
+      "ref": "HEAD",
+      "rev": "a55fbf42c36a37b94ec07291bd79cb6b6bf3a04d",
+      "license": "MIT",
+      "category": "dotnet",
+      "license_file": "LICENSE",
+      "why": "Microsoft's .NET skills, curated to EF Core, Web API, OpenTelemetry, diagnostics, CPM and upgrades; mobile crash tools, Blazor and the heavy test/MSBuild sets left out."
+    },
+    {
+      "name": "microbenchmarking",
+      "repo": "dotnet/skills",
+      "path": "plugins/dotnet-diag/skills/microbenchmarking",
+      "ref": "HEAD",
+      "rev": "a55fbf42c36a37b94ec07291bd79cb6b6bf3a04d",
+      "license": "MIT",
+      "category": "dotnet",
+      "license_file": "LICENSE",
+      "why": "Microsoft's .NET skills, curated to EF Core, Web API, OpenTelemetry, diagnostics, CPM and upgrades; mobile crash tools, Blazor and the heavy test/MSBuild sets left out."
+    },
+    {
+      "name": "convert-to-cpm",
+      "repo": "dotnet/skills",
+      "path": "plugins/dotnet-nuget/skills/convert-to-cpm",
+      "ref": "HEAD",
+      "rev": "a55fbf42c36a37b94ec07291bd79cb6b6bf3a04d",
+      "license": "MIT",
+      "category": "dotnet",
+      "license_file": "LICENSE",
+      "why": "Microsoft's .NET skills, curated to EF Core, Web API, OpenTelemetry, diagnostics, CPM and upgrades; mobile crash tools, Blazor and the heavy test/MSBuild sets left out."
+    },
+    {
+      "name": "migrate-dotnet9-to-dotnet10",
+      "repo": "dotnet/skills",
+      "path": "plugins/dotnet-upgrade/skills/migrate-dotnet9-to-dotnet10",
+      "ref": "HEAD",
+      "rev": "a55fbf42c36a37b94ec07291bd79cb6b6bf3a04d",
+      "license": "MIT",
+      "category": "dotnet",
+      "license_file": "LICENSE",
+      "why": "Microsoft's .NET skills, curated to EF Core, Web API, OpenTelemetry, diagnostics, CPM and upgrades; mobile crash tools, Blazor and the heavy test/MSBuild sets left out."
+    },
+    {
+      "name": "migrate-dotnet10-to-dotnet11",
+      "repo": "dotnet/skills",
+      "path": "plugins/dotnet-upgrade/skills/migrate-dotnet10-to-dotnet11",
+      "ref": "HEAD",
+      "rev": "a55fbf42c36a37b94ec07291bd79cb6b6bf3a04d",
+      "license": "MIT",
+      "category": "dotnet",
+      "license_file": "LICENSE",
+      "why": "Microsoft's .NET skills, curated to EF Core, Web API, OpenTelemetry, diagnostics, CPM and upgrades; mobile crash tools, Blazor and the heavy test/MSBuild sets left out."
+    },
+    {
+      "name": "migrate-nullable-references",
+      "repo": "dotnet/skills",
+      "path": "plugins/dotnet-upgrade/skills/migrate-nullable-references",
+      "ref": "HEAD",
+      "rev": "a55fbf42c36a37b94ec07291bd79cb6b6bf3a04d",
+      "license": "MIT",
+      "category": "dotnet",
+      "license_file": "LICENSE",
+      "why": "Microsoft's .NET skills, curated to EF Core, Web API, OpenTelemetry, diagnostics, CPM and upgrades; mobile crash tools, Blazor and the heavy test/MSBuild sets left out."
+    },
+    {
+      "name": "supply-chain-risk-auditor",
+      "repo": "trailofbits/skills",
+      "path": "plugins/supply-chain-risk-auditor/skills/supply-chain-risk-auditor",
+      "ref": "HEAD",
+      "rev": "0cc1c73a5e96749ab32d7ea5e14892fafa6972ae",
+      "license": "CC-BY-SA-4.0",
+      "category": "security",
+      "license_file": "LICENSE",
+      "why": "Trail of Bits review skills that are pure skills; their command/agent-based ones stay plugins."
+    },
+    {
+      "name": "agentic-actions-auditor",
+      "repo": "trailofbits/skills",
+      "path": "plugins/agentic-actions-auditor/skills/agentic-actions-auditor",
+      "ref": "HEAD",
+      "rev": "0cc1c73a5e96749ab32d7ea5e14892fafa6972ae",
+      "license": "CC-BY-SA-4.0",
+      "category": "security",
+      "license_file": "LICENSE",
+      "why": "Trail of Bits review skills that are pure skills; their command/agent-based ones stay plugins."
     }
   ]
 }

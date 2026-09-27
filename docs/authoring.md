@@ -50,7 +50,7 @@ Each installed skill adds its description to every session, and overlapping desc
 
 ## 8. Third-party skills are dependencies
 
-Treat a skill from someone else like a NuGet package that can also rewrite your agent's instructions: pin it, verify it and review every bump. `vendor.json` pins a commit, `vendor.py verify` proves the copy is untouched, and the weekly PR report calls out changes to `allowed-tools`, scripts, URLs and descriptions. Trust decisions are per publisher: first-party marketplaces update in place, while community repositories go through review.
+Treat a skill from someone else like a NuGet package that can also rewrite your agent's instructions: pin it, verify it and review every bump. `vendor.json` pins a commit, `vendor.py verify` proves the copy is untouched, and the weekly PR report calls out changes to `allowed-tools`, scripts, URLs and descriptions. First-party and community skills go through the same review; only plugins that carry more than skills (hooks, a language server, sub-agents, commands) install from their publishers, and `publishers.json` lists them.
 
 ## 9. Keep private skills private
 

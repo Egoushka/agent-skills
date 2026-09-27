@@ -12,7 +12,8 @@ A skill is both text that steers the agent and, often, code it runs. Snyk's Febr
 - **Community skills are vendored.** `vendor.json` records the repository, the path, a pinned commit and the license. `tools/vendor.py` copies the skill byte-for-byte at that commit, together with its upstream `LICENSE`. CI's `vendor.py verify` fails on any local modification.
 - **Updates are pull requests.** A weekly workflow moves pins to upstream HEAD and opens one PR whose report lists changed files, token deltas and SKILL.md diffs. It flags changed `allowed-tools`, added or changed scripts, new URLs and description changes.
 - **Curate, don't mirror.** Only the skill that earns its context is vendored; for example, one of taste-skill's thirteen overlapping skills. Each entry says why in its `why` field, and the catalog shows it.
-- **First-party marketplaces are installed from source.** Publisher-maintained sets such as [dotnet/skills](https://github.com/dotnet/skills) (Microsoft) and [anthropics/skills](https://github.com/anthropics/skills) are trusted at the publisher level and change often, so they are installed through their own marketplaces instead of being copied here.
+- **First-party skills are vendored too.** Revised on 2026-09-27: publisher sets such as [dotnet/skills](https://github.com/dotnet/skills), Grafana, Cloudflare and Angular go through the same pin-and-review path, curated to the skills that are actually used. One repository then holds and installs everything, and the catalog shows the whole setup.
+- **Plugins that are more than skills stay plugins.** A plugin that ships a hook, a language server, a sub-agent or a command (superpowers, `dotnet`, several Trail of Bits plugins) loses that part when only its skills are copied. These are installed from their publishers and recorded in `publishers.json`, which the catalog renders.
 
 ## Consequences
 

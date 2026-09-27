@@ -1,0 +1,45 @@
+{
+  "$comment": "Publisher plugins installed directly because they carry more than skills (hooks, a language server, sub-agents, commands). Their pure skills are vendored under skills/ instead. catalog.py renders this list on the README and the catalog site.",
+  "plugins": [
+    {
+      "name": "superpowers",
+      "repo": "obra/superpowers",
+      "license": "MIT",
+      "why": "Planning, TDD, debugging and subagent-driven development methodology.",
+      "why_plugin": "A SessionStart hook bootstraps the skills; copying the skills alone drops it.",
+      "install": "claude plugin install superpowers@claude-plugins-official"
+    },
+    {
+      "name": "dotnet",
+      "repo": "dotnet/skills",
+      "license": "MIT",
+      "why": "C# refactoring and local SDK setup, plus C# language-server integration.",
+      "why_plugin": "Bundles the C# language server (LSP).",
+      "install": "claude plugin marketplace add dotnet/skills && claude plugin install dotnet@dotnet-agent-skills"
+    },
+    {
+      "name": "differential-review",
+      "repo": "trailofbits/skills",
+      "license": "CC-BY-SA-4.0",
+      "why": "Security-focused review of a diff with git-history context.",
+      "why_plugin": "Ships the adversarial-modeler sub-agent.",
+      "install": "claude plugin marketplace add trailofbits/skills && claude plugin install differential-review@trailofbits"
+    },
+    {
+      "name": "sharp-edges",
+      "repo": "trailofbits/skills",
+      "license": "CC-BY-SA-4.0",
+      "why": "Finds error-prone APIs and dangerous configuration defaults.",
+      "why_plugin": "Its skill delegates to the sharp-edges-analyzer sub-agent.",
+      "install": "claude plugin marketplace add trailofbits/skills && claude plugin install sharp-edges@trailofbits"
+    },
+    {
+      "name": "insecure-defaults",
+      "repo": "trailofbits/skills",
+      "license": "CC-BY-SA-4.0",
+      "why": "Audits a codebase for hardcoded credentials, fallback secrets and fail-open settings.",
+      "why_plugin": "It is a /insecure-defaults:audit command with a JS workflow, not a skill.",
+      "install": "claude plugin marketplace add trailofbits/skills && claude plugin install insecure-defaults@trailofbits"
+    }
+  ]
+}
