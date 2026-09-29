@@ -1,3 +1,5 @@
 # Vendored skills must stay byte-identical to upstream (tools/vendor.py verify),
 # so never normalize line endings under skills/.
 skills/** -text
+# Patches apply to those bytes, so they keep theirs too.
+patches/** -text
