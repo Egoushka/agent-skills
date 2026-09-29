@@ -9,4 +9,4 @@ Before opening a pull request:
 3. Run `make check catalog` and commit the regenerated README block.
 4. Use conventional commit messages (`feat(skill): …`, `fix(refs): …`, `chore(vendor): …`); they become the activity feed on the catalog site.
 
-Vendored skills are never edited here. Fix them upstream, and the weekly sync brings the fix back.
+Vendored skills are not edited here. Fix them upstream, and the weekly sync brings the fix back. The one exception is a reference to an upstream skill this hub leaves out, cut by a recorded patch ([ADR 0002](docs/adr/0002-vendor-and-pin-community-skills.md)).

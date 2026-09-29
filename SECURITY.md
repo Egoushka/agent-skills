@@ -13,7 +13,8 @@ with a malicious script, a hidden instruction or a broadened `allowed-tools` gra
 report did not flag, since catching those is the point of the [security model](README.md#security-model).
 
 A flaw inside a vendored skill itself belongs upstream: its source repository is linked in the
-catalog, and vendored skills are never edited here. The weekly sync brings the fix back.
+catalog, and vendored skills are not edited here beyond recorded patches that cut references to
+skills the hub leaves out. The weekly sync brings the fix back.
 
 ## Supported versions
 

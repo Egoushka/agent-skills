@@ -4,10 +4,12 @@
   vendor.py status [--json]          pinned commit vs upstream HEAD for every vendored skill
   vendor.py sync [NAME ...]          re-materialize skills at their pinned commits
   vendor.py sync --update [NAME ...] move pins to upstream HEAD and write a review report
-  vendor.py verify                   fail if a vendored directory differs from its pinned upstream
+  vendor.py verify                   fail if a vendored directory differs from its pinned upstream + patches
 
-vendor.json is the lock file: repo, path inside it, pinned `rev`, license. A vendored skill
-is a byte-for-byte copy of upstream at `rev` plus the upstream LICENSE; nobody edits it here.
+vendor.json is the lock file: repo, path inside it, pinned `rev`, license, local `patches`.
+A vendored skill is a byte-for-byte copy of upstream at `rev` plus the upstream LICENSE and
+those patches; nobody edits it by hand. A patch only cuts a reference to an upstream skill
+this hub leaves out, so the skill never points the agent at something that isn't installed.
 """
 from __future__ import annotations
 
@@ -34,8 +36,22 @@ def remote_head(entry: dict) -> str:
     return out.split()[0]
 
 
+def apply_patches(entry: dict, rev: str, work: Path) -> None:
+    """Apply the entry's `patches` in order to a checkout of upstream at `rev`.
+
+    Each patch is a diff in upstream paths under patches/<name>/, so it also reads as the fix
+    to propose upstream. One that no longer applies stops the run rather than shipping the
+    unpatched text: refresh it against the new upstream, or drop it if upstream changed the line.
+    """
+    for patch in entry.get("patches", []):
+        try:
+            git("apply", str(ROOT / patch), cwd=work)
+        except RuntimeError as exc:
+            raise RuntimeError(f"{entry['name']}: {patch} no longer applies to {entry['repo']}@{rev[:7]}: {exc}") from None
+
+
 def fetch(entry: dict, rev: str, into: Path) -> Path:
-    """Materialize upstream `path` (+ license) at `rev` into a fresh directory."""
+    """Materialize upstream `path` (+ license and local patches) at `rev` into a fresh directory."""
     work = Path(tempfile.mkdtemp(prefix="vendor-"))
     git("init", "--quiet", str(work))
     git("remote", "add", "origin", f"https://github.com/{entry['repo']}.git", cwd=work)
@@ -45,6 +61,7 @@ def fetch(entry: dict, rev: str, into: Path) -> Path:
     src = work / entry["path"]
     if not (src / "SKILL.md").is_file():
         raise RuntimeError(f"{entry['repo']}@{rev[:7]}: no SKILL.md under {entry['path']}")
+    apply_patches(entry, rev, work)
     if into.exists():
         shutil.rmtree(into)
     shutil.copytree(src, into)
@@ -83,6 +100,8 @@ def review(name: str, entry: dict, old_rev: str, new_rev: str, before: dict, aft
     for label, items in (("Added", added), ("Removed", removed), ("Changed", changed)):
         if items:
             lines.append(f"- {label}: " + ", ".join(f"`{p}`" for p in items))
+    if entry.get("patches"):
+        lines.append("- Local patches re-applied: " + ", ".join(f"`{p}`" for p in entry["patches"]))
     old_md = before.get("SKILL.md", b"").decode("utf-8", "replace")
     new_md = after.get("SKILL.md", b"").decode("utf-8", "replace")
     if old_md != new_md:
@@ -185,12 +204,14 @@ def cmd_verify() -> int:
         fetch(entry, entry["rev"], expected)
         local, upstream = snapshot(SKILLS_DIR / entry["name"]), snapshot(expected)
         shutil.rmtree(expected.parent)
+        count = len(entry.get("patches", []))
+        source = f"{entry['repo']}@{entry['rev'][:7]}" + (f" + {count} patch{'es' if count > 1 else ''}" if count else "")
         if local != upstream:
             failures += 1
             drift = sorted(set(local) ^ set(upstream) | {p for p in set(local) & set(upstream) if local[p] != upstream[p]})
-            print(f"  ✗ {entry['name']}: differs from {entry['repo']}@{entry['rev'][:7]} in {', '.join(drift[:10])}")
+            print(f"  ✗ {entry['name']}: differs from {source} in {', '.join(drift[:10])}")
         else:
-            print(f"  ✓ {entry['name']:<28} identical to {entry['repo']}@{entry['rev'][:7]}")
+            print(f"  ✓ {entry['name']:<28} identical to {source}")
     return 1 if failures else 0
 
 

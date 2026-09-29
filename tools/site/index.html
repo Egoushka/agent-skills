@@ -237,7 +237,8 @@ footer .wrap { display: flex; gap: 18px; flex-wrap: wrap; justify-content: space
     const more = rest.length ? `<details class="more"><summary>${rest.length} authoring note${rest.length > 1 ? "s" : ""}</summary>
       <ul>${rest.map((f) => `<li>${esc(f.message)}</li>`).join("")}</ul></details>` : "";
     const prov = s.origin === "vendored"
-      ? `Pinned <a href="https://github.com/${esc(s.repo)}/tree/${esc(s.rev)}/${esc(s.path)}">${esc(s.repo)}@${esc(s.rev.slice(0, 7))}</a> · ${esc(s.license)}`
+      ? `Pinned <a href="https://github.com/${esc(s.repo)}/tree/${esc(s.rev)}/${esc(s.path)}">${esc(s.repo)}@${esc(s.rev.slice(0, 7))}</a> · ${esc(s.license)}` +
+        (s.patches && s.patches.length ? ` · <a href="${repoUrl}/tree/main/patches/${esc(s.name)}">${s.patches.length === 1 ? "local patch" : s.patches.length + " local patches"}</a>` : "")
       : `Written here · <a href="${repoUrl}/tree/main/skills/${esc(s.name)}">source</a>${s.updated ? " · updated " + esc(s.updated) : ""}`;
     return `<article class="card">
       <div class="row"><h3>${esc(s.name)}</h3>

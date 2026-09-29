@@ -1,5 +1,5 @@
 {
-  "$comment": "Lock file for vendored skills. Each entry is copied byte-for-byte from `repo`/`path` at `rev` (plus the upstream license). tools/vendor.py keeps it honest; the weekly upstream-sync workflow proposes new revs as reviewable pull requests.",
+  "$comment": "Lock file for vendored skills. Each entry is copied byte-for-byte from `repo`/`path` at `rev` (plus the upstream license and any `patches`, which only cut references to upstream skills the hub leaves out). tools/vendor.py keeps it honest; the weekly upstream-sync workflow proposes new revs as reviewable pull requests.",
   "skills": [
     {
       "name": "design-taste-frontend",
@@ -274,6 +274,122 @@
       "category": "security",
       "license_file": "LICENSE",
       "why": "Trail of Bits review skills that are pure skills; their command/agent-based ones stay plugins."
+    },
+    {
+      "name": "brainstorming",
+      "repo": "obra/superpowers",
+      "path": "skills/brainstorming",
+      "ref": "HEAD",
+      "rev": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
+      "license": "MIT",
+      "license_file": "LICENSE",
+      "category": "planning",
+      "why": "Classifies a request as spike, bounded or architectural and gets the design approved before any code; architectural work ends in a written spec for writing-plans. The optional visual companion starts a local Node server from scripts/ only after you accept it."
+    },
+    {
+      "name": "writing-plans",
+      "repo": "obra/superpowers",
+      "path": "skills/writing-plans",
+      "ref": "HEAD",
+      "rev": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
+      "license": "MIT",
+      "license_file": "LICENSE",
+      "category": "planning",
+      "why": "Turns an approved spec into a task-by-task plan with exact files, interfaces and failing tests, then hands off to subagent-driven-development or executing-plans."
+    },
+    {
+      "name": "executing-plans",
+      "repo": "obra/superpowers",
+      "path": "skills/executing-plans",
+      "ref": "HEAD",
+      "rev": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
+      "license": "MIT",
+      "license_file": "LICENSE",
+      "category": "planning",
+      "patches": [
+        "patches/executing-plans/drop-using-superpowers-reference.patch"
+      ],
+      "why": "Runs a writing-plans plan inline, task by task, with a ledger that survives compaction and one fresh review at the end. It calls subagent-driven-development's scripts and requesting-code-review's reviewer template, so both are vendored with it. Patched: drops a path into the using-superpowers bootstrap, which is not vendored."
+    },
+    {
+      "name": "subagent-driven-development",
+      "repo": "obra/superpowers",
+      "path": "skills/subagent-driven-development",
+      "ref": "HEAD",
+      "rev": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
+      "license": "MIT",
+      "license_file": "LICENSE",
+      "category": "planning",
+      "why": "Runs a plan with a fresh implementer and task reviewer subagent per task; the executor writing-plans recommends. Owns the workspace, brief and review-package scripts that executing-plans also runs."
+    },
+    {
+      "name": "test-driven-development",
+      "repo": "obra/superpowers",
+      "path": "skills/test-driven-development",
+      "ref": "HEAD",
+      "rev": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
+      "license": "MIT",
+      "license_file": "LICENSE",
+      "category": "testing",
+      "patches": [
+        "patches/test-driven-development/drop-writing-skills-reference.patch"
+      ],
+      "why": "Red-green-refactor with a failure watched before any production code, plus rules against mock-only and mirror assertions. Patched: drops a pointer to writing-skills, which is not vendored."
+    },
+    {
+      "name": "systematic-debugging",
+      "repo": "obra/superpowers",
+      "path": "skills/systematic-debugging",
+      "ref": "HEAD",
+      "rev": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
+      "license": "MIT",
+      "license_file": "LICENSE",
+      "category": "debugging",
+      "why": "Root cause before any fix, in four phases; after three failed fixes it stops to question the design."
+    },
+    {
+      "name": "verification-before-completion",
+      "repo": "obra/superpowers",
+      "path": "skills/verification-before-completion",
+      "ref": "HEAD",
+      "rev": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
+      "license": "MIT",
+      "license_file": "LICENSE",
+      "category": "testing",
+      "why": "No success claim without a fresh command run and its output. A required sub-skill of executing-plans and systematic-debugging."
+    },
+    {
+      "name": "requesting-code-review",
+      "repo": "obra/superpowers",
+      "path": "skills/requesting-code-review",
+      "ref": "HEAD",
+      "rev": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
+      "license": "MIT",
+      "license_file": "LICENSE",
+      "category": "workflow",
+      "why": "Dispatches a reviewer subagent on an exact commit range; its code-reviewer.md is the template both plan executors use for the final whole-branch review."
+    },
+    {
+      "name": "using-git-worktrees",
+      "repo": "obra/superpowers",
+      "path": "skills/using-git-worktrees",
+      "ref": "HEAD",
+      "rev": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
+      "license": "MIT",
+      "license_file": "LICENSE",
+      "category": "workflow",
+      "why": "Sets up an isolated workspace, preferring the harness's native worktree tool and any worktree directory your instructions declare. The setup step of both plan executors."
+    },
+    {
+      "name": "finishing-a-development-branch",
+      "repo": "obra/superpowers",
+      "path": "skills/finishing-a-development-branch",
+      "ref": "HEAD",
+      "rev": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
+      "license": "MIT",
+      "license_file": "LICENSE",
+      "category": "workflow",
+      "why": "Closes out a plan: full test run, then merge, PR or keep, and cleanup only of worktrees it created. The last step of both plan executors."
     }
   ]
 }

@@ -2,14 +2,6 @@
   "$comment": "Publisher plugins installed directly because they carry more than skills (hooks, a language server, sub-agents, commands). Their pure skills are vendored under skills/ instead. catalog.py renders this list on the README and the catalog site.",
   "plugins": [
     {
-      "name": "superpowers",
-      "repo": "obra/superpowers",
-      "license": "MIT",
-      "why": "Planning, TDD, debugging and subagent-driven development methodology.",
-      "why_plugin": "A SessionStart hook bootstraps the skills; copying the skills alone drops it.",
-      "install": "claude plugin install superpowers@claude-plugins-official"
-    },
-    {
       "name": "dotnet",
       "repo": "dotnet/skills",
       "license": "MIT",

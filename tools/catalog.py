@@ -92,6 +92,7 @@ def build(with_upstream: bool) -> dict:
             head = heads.get(skill.name)
             item.update({
                 "repo": entry["repo"], "path": entry["path"], "rev": entry["rev"], "why": entry.get("why", ""),
+                "patches": entry.get("patches", []),
                 "upstream": {"head": head, "behind": head != entry["rev"]} if head else None,
             })
         skills.append(item)
@@ -137,6 +138,9 @@ def readme_block(data: dict) -> str:
     for s in data["skills"]:
         if s["origin"] == "vendored":
             origin = f"[{s['repo']}@{s['rev'][:7]}](https://github.com/{s['repo']}/tree/{s['rev']}/{s['path']}) · {s['license']}"
+            if s["patches"]:
+                count = len(s["patches"])
+                origin += f" · [{'local patch' if count == 1 else f'{count} local patches'}](patches/{s['name']})"
         else:
             origin = "own"
         over = " ⚠" if s["body_tokens"] > GUIDE_TOKENS else ""
