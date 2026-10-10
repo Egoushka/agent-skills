@@ -390,6 +390,61 @@
       "license_file": "LICENSE",
       "category": "workflow",
       "why": "Closes out a plan: full test run, then merge, PR or keep, and cleanup only of worktrees it created. The last step of both plan executors."
+    },
+    {
+      "name": "uv",
+      "repo": "astral-sh/claude-code-plugins",
+      "path": "plugins/astral/skills/uv",
+      "ref": "HEAD",
+      "rev": "f3ce88a7ba830f53afd6d944c1d0278ed318e142",
+      "license": "Apache-2.0 OR MIT",
+      "license_file": "LICENSE-APACHE",
+      "category": "python",
+      "why": "Astral's own uv skill: projects, inline script metadata, tools, lockfiles. Upstream last pushed 2026-02-27, so pinned and reviewed by hand."
+    },
+    {
+      "name": "ruff",
+      "repo": "astral-sh/claude-code-plugins",
+      "path": "plugins/astral/skills/ruff",
+      "ref": "HEAD",
+      "rev": "f3ce88a7ba830f53afd6d944c1d0278ed318e142",
+      "license": "Apache-2.0 OR MIT",
+      "license_file": "LICENSE-APACHE",
+      "category": "python",
+      "why": "Astral's ruff skill: lint and format configuration and fixes. Same pin as uv; ty left out until it leaves beta."
+    },
+    {
+      "name": "kotlin-tooling-java-to-kotlin",
+      "repo": "Kotlin/kotlin-agent-skills",
+      "path": "skills/kotlin-tooling-java-to-kotlin",
+      "ref": "HEAD",
+      "rev": "c2f90697bf71966a117a13340d5fff787f004140",
+      "license": "Apache-2.0",
+      "license_file": "LICENSE",
+      "category": "kotlin",
+      "why": "JetBrains' Java-to-Kotlin conversion skill, for learning idiomatic Kotlin from Java/C#-style code; the other kotlin-tooling skills overlap it."
+    },
+    {
+      "name": "csharp-refactoring",
+      "repo": "dotnet/skills",
+      "path": "plugins/dotnet/skills/csharp-refactoring",
+      "ref": "HEAD",
+      "rev": "1d40f95ed0f2cdedfa4c9b2614b7c2035a4323cb",
+      "license": "MIT",
+      "license_file": "LICENSE",
+      "category": "dotnet",
+      "why": "C# refactoring from the .NET team; complements the pinned dotnet set. Pinned at a newer rev than the rest until agent-skills#1 moves them."
+    },
+    {
+      "name": "test-anti-patterns",
+      "repo": "dotnet/skills",
+      "path": "plugins/dotnet-test/skills/test-anti-patterns",
+      "ref": "HEAD",
+      "rev": "1d40f95ed0f2cdedfa4c9b2614b7c2035a4323cb",
+      "license": "MIT",
+      "license_file": "LICENSE",
+      "category": "dotnet",
+      "why": "Finds flaky, over-mocked and assertion-free .NET tests; framework-agnostic, unlike the MSTest-only writers."
     }
   ]
 }
