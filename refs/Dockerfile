@@ -1,6 +1,6 @@
 # refs MCP server. Build from the repository root:
 #   docker build -f refs/Dockerfile -t agent-skills-refs .
-FROM python:3.13-slim
+FROM python:3.14-slim
 
 RUN apt-get update \
  && apt-get install -y --no-install-recommends git ca-certificates \
