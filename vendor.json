@@ -445,6 +445,17 @@
       "license_file": "LICENSE",
       "category": "dotnet",
       "why": "Finds flaky, over-mocked and assertion-free .NET tests; framework-agnostic, unlike the MSTest-only writers."
+    },
+    {
+      "name": "gh-stack",
+      "repo": "github/gh-stack",
+      "path": "skills/gh-stack",
+      "ref": "HEAD",
+      "rev": "6721eba93e847178089b44c89f2cd5c3c3c464bf",
+      "license": "MIT",
+      "license_file": "LICENSE",
+      "category": "workflow",
+      "why": "GitHub's own skill for the gh stack extension: stacked-PR design, command reference and troubleshooting. Fires whenever an agent works with a stack of dependent pull requests."
     }
   ]
 }
