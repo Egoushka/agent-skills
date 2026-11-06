@@ -284,7 +284,10 @@
       "license": "MIT",
       "license_file": "LICENSE",
       "category": "planning",
-      "why": "Classifies a request as spike, bounded or architectural and gets the design approved before any code; architectural work ends in a written spec for writing-plans. The optional visual companion starts a local Node server from scripts/ only after you accept it."
+      "patches": [
+        "patches/brainstorming/ask-all-questions-no-logo.patch"
+      ],
+      "why": "Classifies a request as spike, bounded or architectural and gets the design approved before any code; architectural work ends in a written spec for writing-plans. The optional visual companion starts a local Node server from scripts/ only after you accept it. Patched: asks all questions in one message, recommended first (Yehor's rule, not upstream's one-at-a-time), and the companion never fetches the primeradiant.com logo."
     },
     {
       "name": "writing-plans",
