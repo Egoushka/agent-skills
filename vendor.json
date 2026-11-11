@@ -155,17 +155,6 @@
       "why": "Microsoft's .NET skills, curated to EF Core, Web API, OpenTelemetry, diagnostics, CPM and upgrades; mobile crash tools, Blazor and the heavy test/MSBuild sets left out."
     },
     {
-      "name": "configuring-opentelemetry-dotnet",
-      "repo": "dotnet/skills",
-      "path": "plugins/dotnet-aspnetcore/skills/configuring-opentelemetry-dotnet",
-      "ref": "HEAD",
-      "rev": "a55fbf42c36a37b94ec07291bd79cb6b6bf3a04d",
-      "license": "MIT",
-      "category": "dotnet",
-      "license_file": "LICENSE",
-      "why": "Microsoft's .NET skills, curated to EF Core, Web API, OpenTelemetry, diagnostics, CPM and upgrades; mobile crash tools, Blazor and the heavy test/MSBuild sets left out. Held at a55fbf4: upstream removed it on 2026-09-28 (dotnet/skills#1210, 'weak dotnet-aspnetcore skills'); kept while it earns loads, dropped if it doesn't."
-    },
-    {
       "name": "analyzing-dotnet-performance",
       "repo": "dotnet/skills",
       "path": "plugins/dotnet-diag/skills/analyzing-dotnet-performance",
