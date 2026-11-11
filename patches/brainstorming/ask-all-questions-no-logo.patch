@@ -5,43 +5,25 @@ rule (AIS-69) is all questions in one message, recommended answer first; session
 the skill were corrected 3 times in 4. server.cjs: the visual companion fetched
 primeradiant.com/brand/...png unless a telemetry env var was set; it is now always off (AIS-50).
 Both are behavior changes, not cut references: refresh against the new upstream or drop.
+Refreshed for superpowers v7.0.2 (22f0b46), which rewrote the questions section into "The Conversation".
 
 diff --git a/skills/brainstorming/SKILL.md b/skills/brainstorming/SKILL.md
-index e3f1788..eb58567 100644
+index 9eb0edc..3584f4e 100644
 --- a/skills/brainstorming/SKILL.md
 +++ b/skills/brainstorming/SKILL.md
-@@ -121,7 +121,7 @@ your path and complete them in order.
+@@ -103,7 +103,9 @@ neither the request nor the project answers it. Otherwise, state your
+ call and your reason as a proposal they can correct, and move the work
+ forward. Process steps are always your calls: writing things up, where
+ files go, looking further, how to show something. Do them and say so.
+-Ask one at a time. Use plain language, pitched just a little above where
++Ask all open questions in one message, your recommended answer first,
++each with what it changes; ask follow-ups only for what the answers open
++up. Use plain language, pitched just a little above where
+ your human partner is. Match their vocabulary; never use process jargon.
+ You never need to quote this skill to your human partner.
  
- **Bounded:**
- 1. **Explore project context** — check files, docs, recent commits
--2. **Ask clarifying questions** — one at a time, the ones that matter
-+2. **Ask clarifying questions** — all in one message, the ones that matter
- 3. **Present short design in chat** — approach, files touched, testing
- 4. **Get approval** — STOP and wait for an explicit yes; presenting the design and starting in the same breath is skipping the gate
- 5. **Implement** — proceed with the normal development workflow (TDD applies); no plan document
-@@ -129,7 +129,7 @@ your path and complete them in order.
- **Architectural:**
- 1. **Explore project context** — check files, docs, recent commits
- 2. **Offer the visual companion just-in-time** — NOT upfront. The first time a question would genuinely be clearer shown than described, offer it then (its own message); on approval its browser tab opens for you. If no visual question ever arises, never offer it. See the Visual Companion section below.
--3. **Ask clarifying questions** — one at a time, understand purpose/constraints/success criteria
-+3. **Ask clarifying questions** — all in one message, understand purpose/constraints/success criteria
- 4. **Propose 2-3 approaches** — with trade-offs and your recommendation
- 5. **Present design** — in sections scaled to their complexity, get user approval after each section
- 6. **Write design doc** — save to `docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md` and commit
-@@ -201,9 +201,9 @@ is the whole process.
- - Check out the current project state first (files, docs, recent commits)
- - Before asking detailed questions, assess scope: if the request describes multiple independent subsystems (e.g., "build a platform with chat, file storage, billing, and analytics"), flag this immediately. Don't spend questions refining details of a project that needs to be decomposed first.
- - If the project is too large for a single spec, help the user decompose into sub-projects: what are the independent pieces, how do they relate, what order should they be built? Then brainstorm the first sub-project through the normal design flow. Each sub-project gets its own spec → plan → implementation cycle.
--- For appropriately-scoped projects, ask questions one at a time to refine the idea
-+- For appropriately-scoped projects, ask all questions in one message to refine the idea
- - Prefer multiple choice questions when possible, but open-ended is fine too
--- Only one question per message - if a topic needs more exploration, break it into multiple questions
-+- Put every open question in one message, your recommended answer first, each with what it changes; ask follow-ups only for what the answers open up
- - Focus on understanding: purpose, constraints, success criteria
- 
- **Exploring approaches:**
 diff --git a/skills/brainstorming/scripts/server.cjs b/skills/brainstorming/scripts/server.cjs
-index a828b35..a96029a 100644
+index fdc7961..5b9e236 100644
 --- a/skills/brainstorming/scripts/server.cjs
 +++ b/skills/brainstorming/scripts/server.cjs
 @@ -109,7 +109,7 @@ const TELEMETRY_DISABLE_ENV_VARS = [
