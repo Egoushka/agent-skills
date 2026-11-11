@@ -71,7 +71,7 @@ To stay current automatically, install the daily job with `./tools/sync/install-
 | [`verification-before-completion`](skills/verification-before-completion) | [obra/superpowers@5bf4e78](https://github.com/obra/superpowers/tree/5bf4e78011075bcfc0dc295f0724994cd123ee71/skills/verification-before-completion) · MIT | Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before… | ≈65 | ≈829 |
 | [`writing-plans`](skills/writing-plans) | [obra/superpowers@5bf4e78](https://github.com/obra/superpowers/tree/5bf4e78011075bcfc0dc295f0724994cd123ee71/skills/writing-plans) · MIT | Use when you have a spec or requirements for a multi-step task, before touching code. | ≈25 | ≈2.2k |
 
-All 43 skills together cost ≈4.4k tokens in every session (names and descriptions); a body loads only when its skill fires. ⚠ marks a body over the 5,000-token guideline. Token counts are estimates (characters ÷ 4).
+All 42 skills together cost ≈4.4k tokens in every session (names and descriptions); a body loads only when its skill fires. ⚠ marks a body over the 5,000-token guideline. Token counts are estimates (characters ÷ 4).
 
 **From publishers.** These carry more than skills (hooks, a language server, sub-agents, commands), so they install as plugins from their publishers; their pure skills are vendored above.
 
