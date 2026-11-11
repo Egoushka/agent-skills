@@ -210,7 +210,7 @@ The current list is in four places:
 By origin, from `vendor.json` and `skills/` at this commit:
 
 - **Own** (1): `dev-references`.
-- **[dotnet/skills](https://github.com/dotnet/skills)** (12, MIT): `analyzing-dotnet-performance`, `configuring-opentelemetry-dotnet`, `convert-to-cpm`, `create-datadriven-aspnetcore`, `dotnet-trace-collect`, `dotnet-webapi`, `dump-collect`, `microbenchmarking`, `migrate-dotnet10-to-dotnet11`, `migrate-dotnet9-to-dotnet10`, `migrate-nullable-references`, `optimizing-ef-core-queries`.
+- **[dotnet/skills](https://github.com/dotnet/skills)** (11, MIT): `analyzing-dotnet-performance`, `convert-to-cpm`, `create-datadriven-aspnetcore`, `dotnet-trace-collect`, `dotnet-webapi`, `dump-collect`, `microbenchmarking`, `migrate-dotnet10-to-dotnet11`, `migrate-dotnet9-to-dotnet10`, `migrate-nullable-references`, `optimizing-ef-core-queries`.
 - **[obra/superpowers](https://github.com/obra/superpowers)** (10, MIT): `brainstorming`, `executing-plans`, `finishing-a-development-branch`, `requesting-code-review`, `subagent-driven-development`, `systematic-debugging`, `test-driven-development`, `using-git-worktrees`, `verification-before-completion`, `writing-plans`.
 - **[grafana/skills](https://github.com/grafana/skills)** (5, Apache-2.0): `alerting-irm`, `dashboarding`, `loki`, `prometheus`, `promql`.
 - **[mattpocock/skills](https://github.com/mattpocock/skills)** (2, MIT): `grill-me`, `grilling`.
