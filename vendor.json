@@ -459,6 +459,17 @@
       "license_file": "LICENSE",
       "category": "workflow",
       "why": "GitHub's own skill for the gh stack extension: stacked-PR design, command reference and troubleshooting. Fires whenever an agent works with a stack of dependent pull requests."
+    },
+    {
+      "name": "security-audit",
+      "repo": "cloudflare/security-audit-skill",
+      "path": "skills/security-audit",
+      "ref": "HEAD",
+      "rev": "c1c8a8c1471069fb0e188eeaff69b8e8db6564a8",
+      "license": "MIT",
+      "license_file": "LICENSE",
+      "category": "security",
+      "why": "Cloudflare's source-first security audit: six phases with isolated hunter agents, a fresh verifier per candidate and independent record verification, ending in a findings.json checked by zero-dependency node validators. Token-heavy and multi-agent: the workspace security skill runs it as its deep tier before a paid endpoint goes public, not per PR."
     }
   ]
 }
