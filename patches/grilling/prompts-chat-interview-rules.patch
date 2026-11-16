@@ -4,10 +4,10 @@ Idea from prompts.chat row 2748 ("1Sentence Deck": never invent numbers) and row
 Not taken: "one question at a time" (the hub asks a whole frontier per round) and the three thesis candidates (pitch-deck specific).
 Behavior addition, not a cut reference: refresh against the new upstream or drop.
 
-diff --git a/skills/grilling/SKILL.md b/skills/grilling/SKILL.md
+diff --git a/skills/productivity/grilling/SKILL.md b/skills/productivity/grilling/SKILL.md
 index d2f09a1..8201083 100644
---- a/skills/grilling/SKILL.md
-+++ b/skills/grilling/SKILL.md
+--- a/skills/productivity/grilling/SKILL.md
++++ b/skills/productivity/grilling/SKILL.md
 @@ -27,4 +27,10 @@ Each round the user answers reshapes the tree: settled decisions push the fronti
  
  Finding _facts_ is your job, never the user's. When a frontier question needs a fact from the environment (filesystem, tools, etc.), dispatch a sub-agent with a fresh context window to find it; don't ask the user for anything you could look up yourself. Don't block on it: a running exploration is an unsettled prerequisite, so only the questions downstream of it wait for the sub-agent to report; ask the rest of the frontier now. The _decisions_ are the user's: put each to them and wait.
