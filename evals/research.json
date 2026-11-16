@@ -1,0 +1,42 @@
+{
+  "skill": "research",
+  "$comment": "Trigger and behaviour cases. Run on demand (they call a model): see docs/authoring.md#6-evals-before-prose.",
+  "should_trigger": [
+    {
+      "query": "What exists for linting GitHub Actions workflows? Find the best options.",
+      "expected_behavior": [
+        "States a depth in one line",
+        "Writes the question, bar and freshness window before searching",
+        "Runs several channels with 8 or more queries",
+        "Reports licence, stars and last push with a URL per claim"
+      ]
+    },
+    {
+      "query": "Is there an agent skill for auditing a codebase security? Survey the landscape.",
+      "expected_behavior": [
+        "Keeps remembered candidates on a sealed list and does not search them by name first",
+        "Checks the org of every top hit",
+        "Runs a blind miss pass and reports its yield"
+      ]
+    },
+    {
+      "query": "Write a brief for a subagent to research alternatives to our current queue library.",
+      "expected_behavior": [
+        "Uses the brief template with question, bar, window and depth",
+        "Leaves candidate names out of the brief"
+      ]
+    },
+    {
+      "query": "Find alternatives to Sentry for small teams.",
+      "expected_behavior": [
+        "Reports whether saturation was reached",
+        "Marks claims with one source as low confidence"
+      ]
+    }
+  ],
+  "should_not_trigger": [
+    "What is the current stable version of Node.js?",
+    "Refactor this function to use async/await.",
+    "Summarise this README for me."
+  ]
+}
