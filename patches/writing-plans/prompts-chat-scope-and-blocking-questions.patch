@@ -1,0 +1,28 @@
+Plan scope line and a cap on blocking questions.
+
+Idea from prompts.chat row 729 ("OpenAI Create Plan Skill"): at most 1-2 blocking questions, explicit in/out of scope, CC0.
+Not taken: the 6-10 item checklist (this skill sizes tasks by test cycle) and an Open questions section.
+Behavior addition, not a cut reference: refresh against the new upstream or drop.
+
+diff --git a/skills/writing-plans/SKILL.md b/skills/writing-plans/SKILL.md
+index 4cf0275..431cfbd 100644
+--- a/skills/writing-plans/SKILL.md
++++ b/skills/writing-plans/SKILL.md
+@@ -20,6 +20,8 @@ Write implementation plans for an engineer who has not seen this codebase or thi
+ 
+ If the spec covers multiple independent subsystems, it should have been broken into sub-project specs during brainstorming. If it wasn't, suggest breaking this into separate plans — one per subsystem. Each plan should produce working, testable software on its own.
+ 
++If the spec leaves something open that blocks the plan, ask at most 1-2 questions, multiple-choice where you can. For anything else, make a reasonable assumption and write it into the plan.
++
+ ## File Structure
+ 
+ Before defining tasks, map out which files will be created or modified and what each one is responsible for. This is where decomposition decisions get locked in.
+@@ -64,6 +66,8 @@ independently testable deliverable.
+ 
+ **Tech Stack:** [Key technologies/libraries]
+ 
++**Scope:** In: [what this plan changes]. Out: [what it leaves alone, so it isn't added later]
++
+ **Spec:** [path to the spec/design doc this plan implements — the plan
+ argues from the spec, so the spec travels with it; executors read both]
+ 

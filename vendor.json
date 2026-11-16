@@ -32,7 +32,10 @@
       "license": "MIT",
       "license_file": "LICENSE",
       "category": "planning",
-      "why": "Interviews you about a plan as a design tree, one round of frontier questions at a time, each with a recommended answer; looks up facts itself and leaves decisions to you. The engine behind grill-me."
+      "patches": [
+        "patches/grilling/prompts-chat-interview-rules.patch"
+      ],
+      "why": "Interviews you about a plan as a design tree, one round of frontier questions at a time, each with a recommended answer; looks up facts itself and leaves decisions to you. The engine behind grill-me. Patched: never invents facts for you, caps probing per branch and ranks open assumptions by likelihood x impact (ideas from prompts.chat, CC0)."
     },
     {
       "name": "grill-me",
@@ -287,7 +290,10 @@
       "license": "MIT",
       "license_file": "LICENSE",
       "category": "planning",
-      "why": "Turns an approved spec into a task-by-task plan with exact files, interfaces and failing tests, then hands off to subagent-driven-development or executing-plans."
+      "patches": [
+        "patches/writing-plans/prompts-chat-scope-and-blocking-questions.patch"
+      ],
+      "why": "Turns an approved spec into a task-by-task plan with exact files, interfaces and failing tests, then hands off to subagent-driven-development or executing-plans. Patched: a plan states what is in and out of scope and asks at most 1-2 blocking questions (idea from prompts.chat, CC0)."
     },
     {
       "name": "executing-plans",
