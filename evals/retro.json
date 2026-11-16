@@ -1,0 +1,32 @@
+{
+  "skill": "retro",
+  "$comment": "Trigger and behaviour cases. Run on demand (they call a model): see docs/authoring.md#6-evals-before-prose.",
+  "should_trigger": [
+    {
+      "query": "retro",
+      "expected_behavior": [
+        "Reads this session's tool calls instead of recalling impressions",
+        "Prints at most 3 proposals in the retro block",
+        "Checks existing scripts and skills before proposing a new tool"
+      ]
+    },
+    {
+      "query": "What should we automate after this session?",
+      "expected_behavior": [
+        "Cites counts or a verbatim quote as evidence",
+        "Proposes a trigger when a tool already exists but went unused"
+      ]
+    },
+    {
+      "query": "Any lessons from the last hour before I write the handoff?",
+      "expected_behavior": [
+        "Prints the block with - none and a reason when nothing clears the thresholds"
+      ]
+    }
+  ],
+  "should_not_trigger": [
+    "Run a sprint retrospective agenda for my team of six.",
+    "Summarise what we changed in this PR.",
+    "Write a handoff note for the next session."
+  ]
+}
