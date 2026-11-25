@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
   schedule:
-    - cron: "17 6 * * *" # daily, so "upstream updates awaiting review" stays current
+    - cron: "17 6 * * 1" # Mondays, an hour after upstream-sync opens its PR; pushes to main rebuild it too
   workflow_dispatch:
 
 permissions:
